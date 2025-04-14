@@ -1,4 +1,5 @@
 import java.util.function.Function;
+import java.util.function.Predicate;
 
 public class SinglyLinkedList<T> {
   private T data;
@@ -42,6 +43,19 @@ public class SinglyLinkedList<T> {
       result.next = this.next.insert(e);
       return result;
     }
+  }
+
+  public SinglyLinkedList<T> filter(Predicate<T> predicate) {
+    SinglyLinkedList<T> result = SinglyLinkedList.empty();
+    SinglyLinkedList<T> current = this;
+
+    while (current != null && current.data != null) {
+      if (predicate.test(current.data))
+        result = result.insert(current.data);
+      current = current.next;
+    }
+
+    return result;
   }
 
   @Override
