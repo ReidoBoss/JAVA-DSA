@@ -1,3 +1,4 @@
+import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
@@ -12,6 +13,14 @@ public class SinglyLinkedList<T> {
 
   public static <T> SinglyLinkedList<T> empty() {
     return new SinglyLinkedList<>(null);
+  }
+
+  public void forEach(Consumer<T> action) {
+    SinglyLinkedList<T> current = this;
+    while (current != null && current.data != null) {
+      action.accept(current.data);
+      current = current.next;
+    }
   }
 
   public <R> SinglyLinkedList<R> map(Function<T, R> transform) {
