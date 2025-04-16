@@ -31,4 +31,20 @@ public class SinglyLinkedList<T> {
 
     return new SinglyLinkedList<T>(this.data, appendedTail);
   }
+
+  @Override
+  public String toString() {
+    String baseString = "SinglyLinkedList(";
+    if (isDataNull)
+      return baseString + ")";
+
+    return baseString + stringHelper(this, "") + ")";
+  }
+
+  private String stringHelper(
+      final SinglyLinkedList<T> current,
+      final String builtString) {
+    String concatinatedString = builtString + current.data.toString();
+    return current.isNextNull ? concatinatedString : stringHelper(current.next, concatinatedString + ", ");
+  }
 }
