@@ -17,4 +17,18 @@ public class SinglyLinkedList<T> {
   public final static <T> SinglyLinkedList<T> empty() {
     return new SinglyLinkedList<T>(null, null);
   }
+
+  final public SinglyLinkedList<T> insert(final T element) {
+    if (element == null)
+      throw new NullPointerException("nulls not allowed to be inserted");
+
+    final SinglyLinkedList<T> newTail = new SinglyLinkedList<T>(element, null);
+
+    if (isDataNull)
+      return newTail;
+
+    final SinglyLinkedList<T> appendedTail = isNextNull ? newTail : next.insert(element);
+
+    return new SinglyLinkedList<T>(this.data, appendedTail);
+  }
 }
