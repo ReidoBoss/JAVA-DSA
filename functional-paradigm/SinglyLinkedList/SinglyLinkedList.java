@@ -13,4 +13,8 @@ public class SinglyLinkedList<T> {
     this.isDataNull = data == null;
     this.isNextNull = next == null;
   }
+
+  public final static <T> SinglyLinkedList<T> empty() {
+    return new SinglyLinkedList<T>(null, null);
+  }
 }
