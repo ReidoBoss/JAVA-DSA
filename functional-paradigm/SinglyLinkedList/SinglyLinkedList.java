@@ -32,6 +32,14 @@ public class SinglyLinkedList<T> {
     return new SinglyLinkedList<T>(this.data, appendedTail);
   }
 
+  public final void forEach(Consumer<T> element) {
+    if (isDataNull)
+      return;
+    element.accept(this.data);
+    if (!isNextNull)
+      this.next.forEach(element);
+  }
+
   final public <R> SinglyLinkedList<R> map(final Function<T, R> func) {
     if (isDataNull)
       return empty();
