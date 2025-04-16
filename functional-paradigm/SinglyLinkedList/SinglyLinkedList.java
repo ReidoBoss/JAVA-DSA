@@ -42,6 +42,19 @@ public class SinglyLinkedList<T> {
 
   }
 
+  public final SinglyLinkedList<T> filter(final Predicate<T> predicate) {
+    if (isDataNull)
+      return empty();
+
+    final SinglyLinkedList<T> filteredNext = isNextNull ? empty() : next.filter(predicate);
+
+    if (predicate.test(data)) {
+      return new SinglyLinkedList<>(data, filteredNext);
+    } else {
+      return filteredNext;
+    }
+  }
+
   @Override
   public String toString() {
     String baseString = "SinglyLinkedList(";
