@@ -32,6 +32,16 @@ public class SinglyLinkedList<T> {
     return new SinglyLinkedList<T>(this.data, appendedTail);
   }
 
+  final public <R> SinglyLinkedList<R> map(final Function<T, R> func) {
+    if (isDataNull)
+      return empty();
+
+    final SinglyLinkedList<R> mappedNext = isNextNull ? null : next.map(func);
+
+    return new SinglyLinkedList<R>(func.apply(data), mappedNext);
+
+  }
+
   @Override
   public String toString() {
     String baseString = "SinglyLinkedList(";
